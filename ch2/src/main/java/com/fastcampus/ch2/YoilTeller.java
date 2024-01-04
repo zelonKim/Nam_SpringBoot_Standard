@@ -1,15 +1,6 @@
 package com.fastcampus.ch2;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Calendar;
 
 
 /*
@@ -68,6 +59,7 @@ public class YoilTeller {
 /////////////////////////////////
 
 
+/*
 
 
 @Controller
@@ -92,20 +84,95 @@ public class YoilTeller {
         return "yoil";  // yoil.html 뷰를 반환함.
     }
 }
+*/
+
+
+
+
+
+///////////////////////
 
 
 
 
 
 
+/*
+
+@Controller
+public class YoilTeller {
+
+    @RequestMapping("/yoil")
+    public ModelAndView main(int year, int month, int day) throws IOException { // Model 매개변수 사용 x
+        ModelAndView mv = new ModelAndView(); // ModelAndView 객체 생성
+
+        mv.setViewName("yoilError"); // 기본 뷰 지정
+
+        if (!isValid(year, month, day)) {
+            return mv; // 기본 뷰 반환
+        }
+
+        Calendar cal = Calendar.getInstance();
+        cal.clear();
+        cal.set(year, month - 1, day);
+
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        char yoil = "일월화수목금토".charAt(dayOfWeek - 1);
+
+
+        mv.addObject("Year", year); // 처리 결과를 ModelAndView에 담아줌.
+        mv.addObject("Month", month);
+        mv.addObject("Day", day);
+        mv.addObject("Yoil", yoil);
+        mv.setViewName("yoil"); // 다른 뷰 지정
+
+        return mv; // 다른 뷰 반환
+    }
+
+        private boolean isValid (int year, int month, int day) {
+            return true;
+        }
+
+    }
+    */
 
 
 
 
+//////////////////////////////
 
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
+import java.util.Calendar;
 
+@Controller
+public class YoilTeller {
 
+    @RequestMapping("/getYoil")
+    public String main(@ModelAttribute("myDate") MyDate myDate, Model m) throws IOException {
+        // @ModelAttribute("속성명")를 '참조형 매개변수 타입' 앞에 붙여주면, 자동으로 해당 '매개변수 객체'를 속성값으로 하여 Model에 담아줌.
 
+    // public String main(MyDate myDate, Model m) throws IOException { // 참조형 매개변수에는 @ModelAttribute가 자동으로 붙음.
+        getYoil(myDate);
+
+        return "yoil";
+    }
+
+    @ModelAttribute("Yoil")  // @ModelAttribute("속성명")를 '메서드' 앞에 붙여주면, 자동으로 해당 '반환값'을 속성값으로 하여 Model에 담아줌.
+    private static char getYoil(MyDate myDate) {
+        Calendar cal = Calendar.getInstance();
+        cal.clear();
+        cal.set(myDate.getYear(), myDate.getMonth()-1, myDate.getDay());
+
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        char yoil = "일월화수목금토".charAt(dayOfWeek-1);
+        return yoil;
+    }
+
+}
 

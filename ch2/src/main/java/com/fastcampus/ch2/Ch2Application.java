@@ -1,10 +1,12 @@
-package com.fastcampus.ch2;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package com.fastcampus.ch2;
+        import org.springframework.boot.SpringApplication;
+        import org.springframework.boot.autoconfigure.SpringBootApplication;
+        import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-public class Ch2Application { // 실행 시, 내장 톰캣을 띄워줌.
+@ServletComponentScan
+public class Ch2Application { // 서블릿에 필터를 적용하기 위해 @ServletComponentScan을 붙여줌.
     public static void main(String[] args) {
         SpringApplication.run(Ch2Application.class, args);
     }
