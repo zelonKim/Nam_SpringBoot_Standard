@@ -1,3 +1,20 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1> 로그인 성공 </h1>-->
+<!--    <h1 th:text="|아이디는 ${Id}|"></h1>-->
+<!--    <h1 th:text="|비밀번호는 ${Pwd}|"></h1>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!-------------------------------->
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,8 +22,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h1> 로그인 성공 </h1>
-    <h1 th:text="|아이디는 ${Id}|"></h1> <!-- Model에 담겨있는 속성값은 "${속성명}"을 통해 가져옴. -->
-    <h1 th:text="|비밀번호는 ${Pwd}|"></h1> <!-- ${ }와 함께 다른 문자열을 출력할때는 전체를 | |로 감싸줘야 함. -->
+<h1> 로그인 성공 </h1>
+<h1 th:text="|아이디는 ${#request.getAttribute('Id')}|"></h1>
+<h1 th:text="|비밀번호는 ${#request.getAttribute('Pwd')}|"></h1>
 </body>
 </html>

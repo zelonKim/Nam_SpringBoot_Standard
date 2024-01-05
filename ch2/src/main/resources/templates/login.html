@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1 th:text="${param.msg}"></h1> <!-- URL에 담겨있는 쿼리스트링값은 "${param.쿼리스트링명}"을 통해 가져옴. -->
+<!--<h1 th:text="${param.msg}"></h1>-->
+<h1 th:text="${msg}"></h1>
+
   <form action="/login/login" method="post">
       id:<br>
     <input type="text" name="id"><br>
