@@ -5,35 +5,49 @@
     <title>Title</title>
 </head>
 <body>
-
-<input type="button" value="Go" th:attr="value=@{Home}" />  <!--Home-->
-<input type="button" value="Go" th:value="@{Home}" />  <!--Home-->
-<input type="button" value="Go" th:attrappend="value=@{Home}" />  <!--GoHome-->
-<input type="button" value="Go" th:attrprepend="value=@{Home}" /> <!--HomeGo-->
+<h1 th:text="|year: ${#request.getAttribute('year')}|"></h1>
+<h1 th:text="|id: ${#session.getAttribute('id')}|"></h1>
+<h1 th:text="|email: ${#servletContext.getAttribute('email')}|"></h1>
 
 
 
-<span th:each="opt, status : ${list}">[[${status.index}]]</span>   <!--0 1 2 3 4-->
-<span th:each="opt, status : ${list}">[[${status.count}]]</span>  <!--1 2 3 4 5-->
-<span th:each="opt, status : ${list}">[[${status.size}]]</span> <!--5 5 5 5 5-->
-<span th:each="opt, status : ${list}">[[${status.odd}]]</span>  <!--true false true false true-->
-<span th:each="opt, status : ${list}">[[${status.even}]]</span> <!--false true false true false-->
-<span th:each="opt, status : ${list}">[[${status.first}]]</span> <!--true false false false false-->
-<span th:each="opt, status : ${list}">[[${status.last}]]</span> <!--false false false false true-->
-<span th:each="opt, status : ${list}">[[${status.current}]]</span> <!--aaa bbb ccc ddd eee-->
+<h1 th:text="|year: ${year}|"></h1>
+<h1 th:text="|id: ${session.id}|"></h1>
+<h1 th:text="|email: ${application.email}|"></h1>
 
+
+<script th:inline="javascript">
+    var firstName = [[${firstName}]]
+    var arr = [[${list}]]
+    var userObj = [[${user}]]
+</script>
+
+
+<!--/* <a href=“login/auth” th:href=“@{/board/list}”> */-->
+<!--/* <a href=“login/auth”. th:href=“@{/board/list(bno=${bno},type="A")}”> */-->
+<!--/* <a href=“login/auth” th:href=“@{/board/{bno}/list(bno=${bno})}”> */-->
+
+
+
+<input type="button" value="Go" th:attr="value=@{Home}" />
+<input type="button" value="Go" th:value="@{Home}" />
+<input type="button" value="Go" th:attrappend="value=@{Home}" />
+<input type="button" value="Go" th:attrprepend="value=@{Home}" />
+
+
+<span th:each="opt, status : ${list}">[[${status.index}]]</span>
+<span th:each="opt, status : ${list}">[[${status.count}]]</span>
+<span th:each="opt, status : ${list}">[[${status.size}]]</span>
+<span th:each="opt, status : ${list}">[[${status.odd}]]</span>
+<span th:each="opt, status : ${list}">[[${status.even}]]</span>
+<span th:each="opt, status : ${list}">[[${status.first}]]</span>
+<span th:each="opt, status : ${list}">[[${status.last}]]</span>
+<span th:each="opt, status : ${list}">[[${status.current}]]</span>
 
 
 <table>
     <tr th:each="item : ${list}">
         <td th:text="${item}"></td>
-        <!--  aaa -->
-        <!--  bbb -->
-        <!--  ccc -->
-        <!--  ddd -->
-        <!--  eee -->
-
-
 
         <div th:switch="${item}">
             <span th:case="aaa">1위</span>
@@ -42,30 +56,23 @@
             <span th:case="ddd">4위</span>
             <span th:case="eee">5위</span>
         </div>
-        <!--  1위-->
-        <!--  2위-->
-        <!--  3위-->
-        <!--  4위-->
-        <!--  5위-->
-
-
-
     </tr>
+
 
     <tr th:if="${list.size}==0">
         <td> 게시물이 없습니다. </td>
     </tr>
 
     <tr th:unless="${list.size}==0">
-        <td> 게시물이 있습니다. </td> <!-- 게시물이 있습니다. -->
+        <td> 게시물이 있습니다. </td>
     </tr>
 
 </table>
 
-    <h1 th:text="${lastName}">lastName</h1>  <!-- kim -->
-    <h1>[[${firstName}]]</h1>   <!-- seongjin -->
+    <h1 th:text="${lastName}">lastName</h1>
+    <h1>[[${firstName}]]</h1>
 
-    <span th:text="${'<i>Hello</i>'}"></span>   <!--  <i>Hello</i>  -->
-    <span th:utext="${'<h1>Hello</h1>'}"></span>  <!--  Hello  -->
+    <span th:text="${'<i>Hello</i>'}"></span>
+    <span th:utext="${'<h1>Hello</h1>'}"></span>
 </body>
 </html>
