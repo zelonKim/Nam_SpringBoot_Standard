@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 public class Ch3Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Ch3Application.class, args);
-    }
+    public static void main(String[] args) {SpringApplication.run(Ch3Application.class, args);}
 
 }
