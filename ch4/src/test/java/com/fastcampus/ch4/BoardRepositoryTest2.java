@@ -20,7 +20,7 @@ class BoardRepositoryTest2 {
 
     @BeforeEach
     public void testData() {
-        for (int i=0; i<100; i++) {
+        for (int i=0; i <= 100; i++) {
             Board board = new Board();
             board.setBno((long)i);
             board.setTitle("title" + i);
