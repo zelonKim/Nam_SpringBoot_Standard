@@ -42,7 +42,7 @@ class BoardRepositoryTest3 {
 
 
 
-    @Test
+  /*  @Test
     public void queryAnnoTest5() {
         List<Object[]> list = boardRepo.findAllBoardBySQL2();
         list.stream().map(arr -> Arrays.toString(arr)).forEach(System.out::println);
@@ -86,6 +86,6 @@ class BoardRepositoryTest3 {
         List<Board> list = tQuery.getResultList();
 
         assertTrue(list.size() == 100);
-    }
+    }*/
 
 }

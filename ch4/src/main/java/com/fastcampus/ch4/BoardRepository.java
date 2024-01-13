@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface BoardRepository extends CrudRepository<Board, Long> {
-
+/*
     @Query("SELECT b FROM Board b")
     List<Board> findAllBoard();
 
@@ -40,5 +40,6 @@ public interface BoardRepository extends CrudRepository<Board, Long> {
 
     @Transactional // delete의 경우, 필수로 트랜잭션 처리를 해줘야 함.
     int deleteByWriter(String writer); // DELETE FROM Board WHERE Writer =: writer
+*/
 
 }

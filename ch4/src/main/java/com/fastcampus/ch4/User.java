@@ -1,16 +1,27 @@
 package com.fastcampus.ch4;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
     @Id // 기본키로 지정
+    @Column(name="user_id")
     private String id;
     private String password;
     private String name;
     private String email;
+
+    @OneToMany(mappedBy="user", fetch= FetchType.EAGER) // FK가 생기지 않음.
+    // @OneToMany(mappedBy="user", fetch= FetchType.LAZY)
+    List<Board> list = new ArrayList<>();
+
+    // FetchType.EAGER - join을 통해 두 엔티티의 정보를 같이 가져옴.
+    // FetchType.LAZY(기본값) - getList()를 통해 두 엔티티의 정보를 따로 가져옴.
+
+
     private Date inDate; // 입력일
     private Date upDate; // 변경일
 
@@ -21,9 +32,18 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", list=" + list +
                 ", inDate=" + inDate +
                 ", upDate=" + upDate +
                 '}';
+    }
+
+    public List<Board> getList() {
+        return list;
+    }
+
+    public void setList(List<Board> list) {
+        this.list = list;
     }
 
     public String getId() {

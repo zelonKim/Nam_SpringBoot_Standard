@@ -13,6 +13,10 @@ public class Board {
     private String content;
     private Long viewCnt;
 
+    @ManyToOne // FK가 생김.
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
     @Temporal(value= TemporalType.TIMESTAMP)
     private Date inDate;
 
@@ -77,6 +81,14 @@ public class Board {
         this.upDate = upDate;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Board{" +
@@ -85,6 +97,7 @@ public class Board {
                 ", writer='" + writer + '\'' +
                 ", content='" + content + '\'' +
                 ", viewCnt=" + viewCnt +
+//                ", user=" + user +
                 ", inDate=" + inDate +
                 ", upDate=" + upDate +
                 '}';

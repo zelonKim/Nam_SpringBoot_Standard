@@ -20,19 +20,19 @@ class BoardRepositoryTest2 {
 
     @BeforeEach
     public void testData() {
-        for (int i=0; i <= 100; i++) {
+        for (int i = 0; i <= 100; i++) {
             Board board = new Board();
-            board.setBno((long)i);
+            board.setBno((long) i);
             board.setTitle("title" + i);
             board.setContent("content" + i);
             board.setWriter("writer" + (i % 5));
-            board.setViewCnt((long)(Math.random()*100));
+            board.setViewCnt((long) (Math.random() * 100));
             board.setInDate(new Date());
             board.setInDate(new Date());
             boardRepo.save(board);
         }
     }
-
+/*
     @Test
     public void deleteTest() {
         assertTrue(boardRepo.deleteByWriter("writer1")== 20);
@@ -51,4 +51,5 @@ class BoardRepositoryTest2 {
     public void countTest() {
         assertTrue(boardRepo.countAllByWriter("writer1")==20);
     }
+*/
 }
