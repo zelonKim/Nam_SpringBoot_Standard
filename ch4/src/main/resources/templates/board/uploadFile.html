@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>File Upload</title>
+    <style>
+        a { text-decoration: none; }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    let fileList = [];
+
+    function deleteFile(filename) {
+        $.ajax({
+            url: '/board/deleteFile',
+            date: {filename: filename},
+            dataType: 'text',
+            type : 'POST',
+            success: function(result) {
+                alert(result);
+                fileList = fileList.filter(f=> f!=filename)
+                showFileList();
+            }
+        })
+    }
+
+
+    function showFileList() {
+        let tmp=``;
+        for(file of fileList) {
+            tmp += `<li><a href="/board/download?filename=${file}">${file}</a>
+                        <button id="deleteBtn" onclick="deleteFile('${file}')">삭제</button>
+                    </li>`
+        }
+        $('#fileList ul').html(tmp);
+    }
+
+
+    $(document).ready(function() {
+        let copy = $("#uploadDiv").clone();
+
+        $('#uploadBtn').on("click", function() {
+            var formData = new FormData();
+            var inputFile = $('input[name=files]');
+            var files = inputFile[0].files;
+
+            for(i=0; i<files.length; i++) {
+                formData.append("files", files[i]);
+            }
+
+
+            $.ajax({
+                url:'/board/uploadAjax',
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                success: function(result) {
+                    console.dir(result);
+
+                    $('#uploadDiv').html(copy.html()); // 초기화
+
+                    fileList = fileList.concat(result);
+                    showFileList();
+                }
+            })
+
+        })
+    })
+
+</script>
+
+</head>
+<body>
+
+<h2>파일 업로드</h2>
+<!--<form id="uploadForm" action="/board/uploadFile" method="post" enctype="multipart/form-data">-->
+<div id="uploadDiv">
+<input type="file" id="file" name="files" multiple/>
+</div>
+    <br><br>
+    <button id="uploadBtn">Upload File</button>
+    <!--</form>-->
+<div id="fileList">
+    <ul>
+
+    </ul>
+</div>
+</body>
+</html>

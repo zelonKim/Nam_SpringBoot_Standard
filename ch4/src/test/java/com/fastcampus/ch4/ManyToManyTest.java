@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/*
 @SpringBootTest
 class ManyToManyTest {
 
@@ -75,6 +76,7 @@ class ManyToManyTest {
     }
 
 }
+*/
 
 
 

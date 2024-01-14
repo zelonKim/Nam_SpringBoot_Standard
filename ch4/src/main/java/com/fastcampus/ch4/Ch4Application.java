@@ -13,17 +13,19 @@ import javax.persistence.EntityTransaction;
 import java.util.Date;
 
 @SpringBootApplication
-public class Ch4Application implements CommandLineRunner {
+//public class Ch4Application implements CommandLineRunner {
+public class Ch4Application {
+
     @Autowired
     EntityManagerFactory emf;
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Ch4Application.class);
-        app.setWebApplicationType(WebApplicationType.NONE);
+//        app.setWebApplicationType(WebApplicationType.NONE);
         app.run(args);
     }
 
-
+/*
     @Override
     public void run(String... args) throws Exception {
         EntityManager em = emf.createEntityManager();
@@ -62,7 +64,8 @@ public class Ch4Application implements CommandLineRunner {
         tx.begin();
         em.remove(user);
         tx.commit();
-    }
+    }*/
+
 }
 
 
